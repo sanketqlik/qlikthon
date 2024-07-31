@@ -1,13 +1,15 @@
 var express =  require('express');
 var bodyParser =  require('body-parser');
 var Speech = require('ssml-builder');
-var app = require('express');
+var app = express();
 app.use(bodyParser.json({'limit':'100mb'}));
 app.use(bodyParser.urlencoded({'limit':'100mb','extended':true}));
 
 app.listen(8080);
-
-app.post('/hack-quick',(req,res) => {
+app.get('/alexa',(req,res) => {
+	res.json({"success":true});
+})
+app.post('/alexa',(req,res) => {
 	var speech = new Speech();
 	speech.say('Welcome to hackthon qlik 2024');
 	var out = speech.ssml(true);
